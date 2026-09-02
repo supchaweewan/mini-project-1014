@@ -13,7 +13,7 @@ MQTT_TOPIC = "traffic/aggregated"
 
 # Edge sends data every 10 seconds.
 # Gateway aggregates approximately 2 minutes of data.
-AGGREGATION_WINDOW_SEC = 120
+AGGREGATION_WINDOW_SEC = 60
 
 MQTT_CLIENT_ID = "TRAFFIC_GATEWAY"
 # ==================================================================

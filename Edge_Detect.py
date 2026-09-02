@@ -6,6 +6,7 @@ import time
 import numpy as np
 import paho.mqtt.client as mqtt
 from datetime import datetime
+import socket
 
 model = YOLO("yolov8n.pt")
 
@@ -26,6 +27,17 @@ FRAME_INTERVAL = 1.0 / TARGET_FPS
 
 url = "https://camerai1.iticfoundation.org/hls/ccs06.m3u8"
 
+"""
+
+GATEWAY_IP = "127.0.0.1"
+GATEWAY_PORT = 5005
+
+
+udp_socket = socket.socket(
+    socket.AF_INET,
+    socket.SOCK_DGRAM
+)"""
+
 ROI_POINTS = np.array([(360, 850), (0, 200), (340, 110), (720, 180)], dtype=np.int32)
 # ID -> list of recent classifications
 vehicle_history = defaultdict(list)
@@ -44,7 +56,7 @@ interval_counts = Counter()
 # Track IDs seen during the current 10-second interval
 interval_ids = set()
 
-PAYLOAD_INTERVAL = 10
+PAYLOAD_INTERVAL = 5
 
 last_payload_time = time.time()
 
@@ -141,13 +153,14 @@ while True:
         payload = {
             "timestamp": datetime.now().isoformat(sep=' '),
             "camera_id": "CAM_ITIC_CCS06",
+            "roi_id": "BEFORE_INTERSECTION",
             "interval_seconds": PAYLOAD_INTERVAL,
-            "vehicle_count": {
+            "vehicle_counts": {
                 "car": interval_counts["car"],
                 "truck": interval_counts["truck"],
                 "motorcycle": interval_counts["motorcycle"]
             },
-            "total": sum(interval_counts.values())
+            "total_vehicles": sum(interval_counts.values())
         }
 
         # Convert to JSON
@@ -156,6 +169,14 @@ while True:
         print("\nJSON PAYLOAD:")
         print(json_payload)
 
+        """        udp_socket.sendto(
+                    json_payload.encode("utf-8"),
+                    (GATEWAY_IP, GATEWAY_PORT)
+                )
+
+                print(
+                    f"[UDP OUT] Sent payload to {GATEWAY_IP}:{GATEWAY_PORT}"
+                )"""
         #client.publish(MQTT_TOPIC, json_payload)
 
         # Reset the interval counters
@@ -173,7 +194,7 @@ while True:
         color=(0, 255, 0),
         thickness=2
     )
-    cv2.imshow("Traffic Tracking", annotated_frame)
+    cv2.imshow("Tracking Vehicles", annotated_frame)
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
