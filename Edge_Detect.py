@@ -20,6 +20,10 @@ client.loop.start()
 
 # How many recent classifications to remember
 MAX_HISTORY = 15
+
+TARGET_FPS = 15
+FRAME_INTERVAL = 1.0 / TARGET_FPS
+
 url = "https://camerai1.iticfoundation.org/hls/ccs06.m3u8"
 
 ROI_POINTS = np.array([(360, 850), (0, 200), (340, 110), (720, 180)], dtype=np.int32)
@@ -49,6 +53,8 @@ cap = cv2.VideoCapture(url)
 
 
 while True:
+
+    frame_start = time.time() 
 
     ret, frame = cap.read()
 
@@ -171,6 +177,11 @@ while True:
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
+    elapsed = time.time() - frame_start
+    sleep_time = FRAME_INTERVAL - elapsed
+    if sleep_time > 0:
+        time.sleep(sleep_time)
 
+        
 cap.release()
 cv2.destroyAllWindows()
