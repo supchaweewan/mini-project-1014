@@ -9,17 +9,17 @@ UDP_PORT = 5005
 MQTT_BROKER = "172.16.2.117"   # Change to your MQTT broker IP
 MQTT_PORT = 1883
 
-MQTT_TOPIC = "traffic/aggregated"
+MQTT_TOPIC = "vehiclecount/aggregated"
 
 # Edge sends data every 10 seconds.
 # Gateway aggregates approximately 2 minutes of data.
-AGGREGATION_WINDOW_SEC = 60
+AGGREGATION_WINDOW_SEC = 120
 
-MQTT_CLIENT_ID = "TRAFFIC_GATEWAY"
+MQTT_CLIENT_ID = "VEHICLE_COUNT"
 # ==================================================================
 
 # บัฟเฟอร์สำหรับเก็บรวบรวมค่าจากเซนเซอร์แต่ละตัวแยกออกจากกัน (Per-Sensor Buffer)
-payload_buffers = []
+payload_buffer = []
 
 # สร้าง Client สำหรับเชื่อมต่อ MQTT
 try:
@@ -121,10 +121,11 @@ async def aggregation_task():
             "UNKNOWN_CAMERA"
         )
 
-        roi_id = payload_buffer[0].get(
-            "roi_id",
-            "UNKNOWN_ROI"
+        student_id = payload_buffer[0].get(
+            "student_id",
+            "UNKNOWN_STUDENT"
         )
+
 
         # --------------------------------------
         # Create aggregated payload
@@ -135,7 +136,7 @@ async def aggregation_task():
         aggregated_payload = {
             "timestamp": now.isoformat(),
             "camera_id": camera_id,
-            "roi_id": roi_id,
+            "student_id": student_id,
             "aggregation_interval_seconds":
                 AGGREGATION_WINDOW_SEC,
 
