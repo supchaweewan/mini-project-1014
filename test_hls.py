@@ -1,7 +1,7 @@
 import cv2
 import time
 
-URL = "https://camera1.iticfoundation.org/hls/10.8.0.23_8555.m3u8"
+URL = "https://camerai1.iticfoundation.org/hls/kk01.m3u8"
 
 cap = cv2.VideoCapture(URL)
 
