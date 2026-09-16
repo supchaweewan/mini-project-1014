@@ -1,4 +1,4 @@
 /yolov8n.pt
 /.venv
-/gateway_test.py
-/test_hls.py
+gateway_test.py
+test_hls.py
