@@ -131,10 +131,9 @@ async def aggregation_task():
         # Create aggregated payload
         # --------------------------------------
 
-        now = datetime.now(timezone.utc)
 
         aggregated_payload = {
-            "timestamp": now.isoformat(),
+            "timestamp": datetime.now().isoformat(sep=' '),
             "camera_id": camera_id,
             "student_id": student_id,
             "aggregation_interval_seconds":
