@@ -127,14 +127,16 @@ while True:
 
                     counted_ids.add(track_id)
                     total_counts[final_class] += 1
-
+                    interval_counts[final_class] += 1
 
                 # Count this vehicle only once during the current
                 # 10-second interval
+                """
                 if track_id not in interval_ids:
 
                     interval_ids.add(track_id)
-                    interval_counts[final_class] += 1
+
+                    """
     # Count vehicles currently visible
     current_counts = Counter()
 
@@ -181,7 +183,7 @@ while True:
         # Reset the interval counters
         interval_counts.clear()
         
-        interval_ids.clear()
+        #interval_ids.clear()
 
         # Reset the timer
         last_payload_time = current_time

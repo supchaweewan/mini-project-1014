@@ -2,3 +2,4 @@
 /.venv
 gateway_test.py
 test_hls.py
+traffic_model.pkl
