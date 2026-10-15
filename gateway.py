@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 UDP_PORT = 5005
 
-MQTT_BROKER = "172.16.2.117"   # Change to your MQTT broker IP
+MQTT_BROKER = "" #   <---- REPLACE WITH YOUR BROKER IP 
 MQTT_PORT = 1883
 
 MQTT_TOPIC = "vehiclecount/aggregated"

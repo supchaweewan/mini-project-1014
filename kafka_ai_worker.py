@@ -16,7 +16,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 # 1. Kafka configuration
 # ============================================================
 
-KAFKA_BROKER = "172.16.2.117:9092"
+KAFKA_BROKER = "172.16.2.117:9092" # <--- Replace with kafka Broker IP
 
 KAFKA_TOPIC = "vehicle_count_6610301014"
 
@@ -27,9 +27,9 @@ KAFKA_GROUP = "traffic-ai-worker-6610301014"
 # 2. InfluxDB configuration
 # ============================================================
 
-INFLUX_URL = "http://172.16.2.117:8086"
-INFLUX_TOKEN = "ai3V3vxPXNMwE_4aGePni-5uLU7MumFckIpHbYi5_O52LkpH38b9IM4WucD6RoKSm8oBx-Wy8ZOfSITZqrTQ7A=="
-INFLUX_ORG = "e761e698e5720d2f"
+INFLUX_URL = "<INSERT_INFLUXDB_IP>"
+INFLUX_TOKEN = "<INSERT_INFLUX_TOKEN>"
+INFLUX_ORG = "<INSERT_INFLUX_ORG>"
 
 INFLUX_BUCKET = "mini_project"
 

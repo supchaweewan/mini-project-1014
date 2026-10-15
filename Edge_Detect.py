@@ -11,21 +11,21 @@ import socket
 model = YOLO("yolov8n.pt")
 
 # this is going to be the MQTT Broker section
-MQTT_BROKER = "172.16.2.117"
+MQTT_BROKER = "" # <--- REPLACE WITH YOUR BROKER IP
 MQTT_PORT = 1883
 MQTT_TOPIC = "vehiclecount/aggregated"
 client = mqtt.Client()
 client.connect(MQTT_BROKER, MQTT_PORT, 60)
 client.loop_start()
 
-STUDENT_ID = "6610301014"
+STUDENT_ID = ""    # <--- Can replace with your ID, or change the value for something else
 # How many recent classifications to remember
 MAX_HISTORY = 15
 
 TARGET_FPS = 15
 FRAME_INTERVAL = 1.0 / TARGET_FPS
 
-url = "https://camerai1.iticfoundation.org/hls/kk01.m3u8"
+url = "https://camerai1.iticfoundation.org/hls/kk01.m3u8" # <--- Replace with the desired CCTV Camera Link
 
 
 
@@ -101,12 +101,6 @@ while True:
 
             center_x = int((x1 + x2) / 2)
             center_y = int((y1 + y2) / 2)
-            """
-            inside_roi = cv2.pointPolygonTest(
-                ROI_POINTS,
-                (center_x, center_y),
-                False
-            ) >= 0"""
 
             # Add classification to history
             vehicle_history[track_id].append(class_name)
@@ -131,12 +125,7 @@ while True:
 
                 # Count this vehicle only once during the current
                 # 10-second interval
-                """
-                if track_id not in interval_ids:
 
-                    interval_ids.add(track_id)
-
-                    """
     # Count vehicles currently visible
     current_counts = Counter()
 
@@ -188,13 +177,6 @@ while True:
         # Reset the timer
         last_payload_time = current_time
     annotated_frame = results[0].plot()
-    """    cv2.polylines(
-        annotated_frame,
-        [ROI_POINTS],
-        isClosed=True,
-        color=(0, 255, 0),
-        thickness=2
-    )"""
     cv2.imshow("Tracking Vehicles", annotated_frame)
 
     if cv2.waitKey(1) & 0xFF == ord("q"):

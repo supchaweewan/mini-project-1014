@@ -12,9 +12,9 @@ from sklearn.metrics import mean_absolute_error
 # 1. InfluxDB configuration
 # ============================================================
 
-INFLUX_URL = "http://172.16.2.117:8086"
-INFLUX_TOKEN = "ai3V3vxPXNMwE_4aGePni-5uLU7MumFckIpHbYi5_O52LkpH38b9IM4WucD6RoKSm8oBx-Wy8ZOfSITZqrTQ7A=="
-INFLUX_ORG = "e761e698e5720d2f"
+INFLUX_URL = "<INSERT_INFLUXDB_IP>"
+INFLUX_TOKEN = "<INSERT_INFLUX_TOKEN>"
+INFLUX_ORG = "<INSERT_INFLUX_ORG>"
 INFLUX_BUCKET = "mini_project"
 
 # Change this if your bridge uses another measurement name

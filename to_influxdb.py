@@ -8,7 +8,7 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 # MQTT CONFIGURATION
 # =========================
 
-MQTT_BROKER = "172.16.2.117"
+MQTT_BROKER = "" #   <---- REPLACE WITH YOUR BROKER IP 
 MQTT_PORT = 1883
 MQTT_TOPIC = "vehiclecount/aggregated"
 
@@ -17,9 +17,9 @@ MQTT_TOPIC = "vehiclecount/aggregated"
 # INFLUXDB CONFIGURATION
 # =========================
 
-INFLUXDB_URL = "http://172.16.2.117:8086"
-INFLUXDB_TOKEN = "ai3V3vxPXNMwE_4aGePni-5uLU7MumFckIpHbYi5_O52LkpH38b9IM4WucD6RoKSm8oBx-Wy8ZOfSITZqrTQ7A=="
-INFLUXDB_ORG = "e761e698e5720d2f"
+INFLUX_URL = "<INSERT_INFLUXDB_IP>"
+INFLUX_TOKEN = "<INSERT_INFLUX_TOKEN>"
+INFLUX_ORG = "<INSERT_INFLUX_ORG>"
 INFLUXDB_BUCKET = "mini_project"
 
 

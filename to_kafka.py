@@ -7,7 +7,7 @@ from kafka import KafkaProducer
 # MQTT Configuration
 # =========================
 
-MQTT_BROKER = "172.16.2.117"
+MQTT_BROKER = "" #   <---- REPLACE WITH YOUR BROKER IP 
 MQTT_PORT = 1883
 MQTT_TOPIC = "vehiclecount/aggregated"
 
@@ -16,7 +16,7 @@ MQTT_TOPIC = "vehiclecount/aggregated"
 # Kafka Configuration
 # =========================
 
-KAFKA_BROKER = "172.16.2.117:9092"
+KAFKA_BROKER = "172.16.2.117:9092" # <--- Replace with kafka Broker IP
 KAFKA_TOPIC = "vehicle_count_6610301014"
 
 
